@@ -246,4 +246,20 @@ body {
   to {
     transform: translateY(100vh) rotate(360deg);
   }
+    /* Mobile fix */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container, .wrapper, .content {
+    width: 100%;
+    padding: 15px;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+}
 }
