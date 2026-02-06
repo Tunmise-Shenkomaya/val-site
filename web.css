@@ -1,0 +1,249 @@
+body {
+    margin: 0;
+    font-family: 'Garamond', serif;
+    background: url('old-paper.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #3a2f1b;
+    text-align: center;
+    padding: 50px;
+  }
+  h1 {
+    font-size: 2.5em;
+    text-shadow: 2px 2px #fff0;
+  }
+  button {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-top: 30px;
+    border: 2px solid #3a2f1b;
+    background: #f7ecd7;
+    border-radius: 10px;
+  }
+  .hidden { display: none; }
+  .sticker { width: 120px; margin: 10px; border-radius: 10px; }
+  .modal {
+    display: none;
+    position: fixed;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 20px;
+    border: 4px solid #3a2f1b;
+    border-radius: 10px;
+  }
+
+  .scroll {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 40px 30px;
+  background: #f7ecd7; /* parchment color */
+  border-radius: 20px;
+  position: relative;
+  font-size: 1.1em;
+  line-height: 1.6;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* top roll */
+.scroll::before,
+.scroll::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  background: #e6d3a3;
+}
+
+.scroll::before {
+  top: -15px;
+  border-radius: 50% 50% 0 0;
+}
+
+.scroll::after {
+  bottom: -15px;
+  border-radius: 0 0 50% 50%;
+}
+
+.sticker-section {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 40px 0;
+}
+
+.sticker-box {
+  width: 140px;
+  height: 180px;
+  padding: 10px;
+  background: linear-gradient(145deg, #ffe6f0, #ffd1e6);
+  border: 2px solid #ff9acb;
+  border-radius: 20px;
+  box-shadow:
+    0 10px 20px rgba(255, 105, 180, 0.25),
+    inset 0 0 10px rgba(255,255,255,0.6);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sticker-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* hover magic ✨ */
+.sticker-box:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow:
+    0 20px 30px rgba(255, 105, 180, 0.4),
+    inset 0 0 15px rgba(255,255,255,0.8);
+  border-color: #ff6fb3;
+}
+
+/* optional tiny sparkle corner */
+.sticker-box::after {
+  content: "💗";
+  position: absolute;
+  top: -12px;
+  right: -12px;
+  font-size: 1.2em;
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.sticker-box:hover::after {
+  opacity: 1;
+}
+
+.val-title {
+  font-size: 2.8em;
+  margin-bottom: 30px;
+  color: #ff5fa2;
+  text-shadow:
+    0 2px 5px rgba(255, 105, 180, 0.4);
+  letter-spacing: 1px;
+}
+
+.yes-btn {
+  padding: 18px 45px;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(145deg, #ff7eb3, #ff4f9a);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow:
+    0 12px 25px rgba(255, 105, 180, 0.4),
+    inset 0 0 10px rgba(255,255,255,0.4);
+  transition: all 0.3s ease;
+}
+
+.yes-btn:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 20px 35px rgba(255, 105, 180, 0.6),
+    inset 0 0 15px rgba(255,255,255,0.6);
+}
+
+.yes-btn:active {
+  transform: scale(0.97);
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 rgba(255,105,180,0.6); }
+  50% { box-shadow: 0 0 25px rgba(255,105,180,0.8); }
+  100% { box-shadow: 0 0 0 rgba(255,105,180,0.6); }
+}
+
+.yes-btn:hover {
+  animation: pulse 1.2s infinite;
+}
+
+.no-btn {
+    position: absolute;
+}
+
+.choice-area {
+    position: relative;
+    height: 120px;
+    margin-top: 30px;
+}
+
+.meme-container {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.meme-container video {
+  position: absolute;
+  width: 250px;
+  border-radius: 15px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+.meme-container video:nth-child(1) { top: 10%; left: 5%; }
+.meme-container video:nth-child(2) { top: 60%; left: 10%; }
+.meme-container video:nth-child(3) { top: 20%; right: 8%; }
+.meme-container video:nth-child(4) { bottom: 10%; right: 15%; }
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+  100% { transform: translateY(0) rotate(-5deg); }
+}
+
+.meme-container video {
+  animation: float 3s ease-in-out infinite;
+}
+
+#confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: pink;
+  opacity: 0.8;
+  border-radius: 50%;
+  animation: confetti-fall 3s linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+}#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+  }
+}
